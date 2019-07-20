@@ -1,0 +1,27 @@
+<div class="side-bar">
+  <div class="side-bar_btn"
+    (click)="open('task')"
+    [ngClass]="{'is-on': currect === 'task'}"
+  >
+    <i class="side-bar_task"></i>
+  </div>
+  <div class="side-bar_btn"
+    (click)="open('analysis')"
+    [ngClass]="{'is-on': currect === 'analysis'}"
+  >
+    <i class="side-bar_analysis"></i>
+  </div>
+  <div class="side-bar_btn"
+    (click)="open('sound')"
+    [ngClass]="{'is-on': currect === 'sound'}"
+  >
+    <i class="side-bar_sound"></i>
+  </div>
+</div>
+<div class="side-cont">
+  <!-- <app-task ></app-task>
+  <app-analysis></app-analysis>
+  <app-sound></app-sound> -->
+  <ng-container *ngComponentOutlet="comps.get(currect)"></ng-container>
+</div>
+

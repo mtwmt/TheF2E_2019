@@ -1,0 +1,11 @@
+<input type="text" placeholder="Add a new task..."
+  (keyup.enter)="onKey($event)"
+/>
+<div class="list">
+  <div class="list-tit">Today</div>
+  <ul>
+    <li
+      *ngFor="let item of taskList; let idx = index"
+    > <i></i>{{ item.tit }}</li>
+  </ul>
+</div>

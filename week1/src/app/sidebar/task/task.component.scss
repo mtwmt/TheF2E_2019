@@ -1,0 +1,44 @@
+@import '../../../assets/scss/_common';
+
+
+input[type=text]{
+  padding: 0 rem(25px);
+  width: 100%;
+  line-height: rem(77px);
+  font-size: rem(35px);
+  border: rem(3px) solid #2A56A5;
+  color: #2A56A5;
+  background: #F1EDE6;
+  &::-webkit-input-placeholder{
+    color: #2A56A5;
+  }
+}
+
+.list{
+  padding: rem(20px);
+  &-tit{
+    font-size: rem(40px);
+    line-height: rem(70px);
+    color: #003CA1;
+    border-bottom: rem(3px) solid #2A56A5;
+  }
+  ul{
+    margin-top: 1rem;
+    >li{
+
+      font-size: rem(30px);
+      color: #003CA1;
+      line-height: 2;
+      i{
+        position: relative;
+        top: rem(4px);
+        margin-right: rem(10px);
+        display: inline-block;
+        width: rem(30px);
+        height: rem(30px);
+        background-color: #003ca1;
+        -webkit-mask-image: url('https://ionicons.com/ionicons/svg/md-play-circle.svg');
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<div class="header">
+  <h1>Pomodoro</h1>
+  <div class="time">{{ time }}</div>
+</div>
+<div class="main">
+  <div class="row">
+    <div class="clock">
+      <div class="clock-main">
+        <div
+          class="point"
+          *ngFor="let item of Arr(12).fill(12); let idx = index"
+          [ngStyle]="{ transform: 'rotate(' + idx * (360 / 12) + 'deg) translateY(9.5rem)' }"
+        ></div>
+      </div>
+      <div class="clock-min"></div>
+      <div class="clock-hour">25:00</div>
+    </div>
+    <div class="btns">
+      <div class="btn btns-cancle"></div>
+      <div class="btn btns-start">Start</div>
+      <div class="btn btns-reset"></div>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="dots">
+      <li *ngFor="let item of Arr(5).fill(5); let idx = index"
+        [ngClass]="{'is-on': taskList[0].level > idx }"
+      ></li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="task">
+      <div class="task-tit">
+        First task today <i></i>
+      </div>
+      <div class="task-cont">
+        <ul>
+          <li
+            *ngFor="let item of taskList; let idx = index"
+          >{{ idx + 1 }}.{{ item.tit }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

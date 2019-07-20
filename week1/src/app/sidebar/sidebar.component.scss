@@ -1,0 +1,58 @@
+@import '../../assets/scss/_common';
+
+
+.side-bar{
+  position: relative;
+  width: rem(140px);
+  height: 100%;
+  padding: rem(5px) 0;
+  background: #2A56A5;
+  color: #F5F1EE;
+  box-shadow: rem(3px) rem(6px) rem(6px) rgba(#000,0.16);
+  &_btn{
+    position: relative;
+    // width: rem(40px);
+    // height: rem(40px);
+    // margin: rem(55px) auto;
+    // padding: rem(55px) 0;
+    margin: rem(15px) auto;
+
+    width: 100%;
+    height: rem(80px);
+    &.is-on{
+      background: #F1EDE6;
+      i{
+        background-color: #003CA1;
+      }
+    }
+  }
+  i{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    // display: inline-block;
+    width: rem(40px);
+    height: rem(40px);
+    margin: 0 auto;
+    background-color: #F7F5F1;
+  }
+  &_task{
+    -webkit-mask-image: url('https://ionicons.com/ionicons/svg/md-list-box.svg');
+  }
+  &_analysis{
+    -webkit-mask-image: url('https://ionicons.com/ionicons/svg/md-analytics.svg');
+  }
+  &_sound{
+    -webkit-mask-image: url('https://ionicons.com/ionicons/svg/md-musical-notes.svg');
+  }
+}
+
+.side-cont{
+  padding: rem(30px) rem(40px);
+  position: relative;
+  width: calc(100% - 7rem);
+  height: 100%;
+  // background: #F1EDE6;
+}
