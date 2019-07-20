@@ -31,7 +31,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "deployUrl": "week1/dist/week1/"
+            // "deployUrl": "week1/dist/week1/"
           },
           "configurations": {
             "production": {
