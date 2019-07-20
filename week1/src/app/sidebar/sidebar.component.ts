@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit {
 
   @Output() doOpen: EventEmitter<any> = new EventEmitter();
 
-  currect = 'task';
+  currect = '';
   isOpen: boolean;
 
   constructor() { }

@@ -108,6 +108,7 @@
 .btns {
   margin-top: rem(800px);
   text-align: center;
+  color: #003CA1;
   .btn{
     display: inline-block;
     vertical-align: middle;
@@ -120,7 +121,7 @@
     font-weight: bold;
     border: rem(3px) solid #003ca1;
     border-radius: rem(10px);
-    font-size: rem(40px);
+    font-size: rem(36px);
   }
   &-cancle {
     width: rem(45px);
@@ -169,6 +170,7 @@
     padding: rem(40px) rem(30px);
     font-size: rem(30px);
     line-height: 2;
+    background: #fff;
     box-shadow: 1px rem(6px) rem(6px) rgba(#000, 0.16);
   }
 }
