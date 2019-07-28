@@ -6,40 +6,17 @@ import { Injectable } from '@angular/core';
 export class AppService {
 
   taskList: Array<any> = [
-    {
-      tit: 'Lorem ipsum dolor sit amet',
-      level: '3'
-    },
-    // {
-    //   tit: 'Consectetur adipiscing elit.',
-    //   level: '2'
-    // },
-    // {
-    //   tit: 'Nulla vulputate neque',
-    //   level: '2'
-    // },
-    // {
-    //   tit: 'Consequat lorem pharetra',
-    //   level: '2'
-    // },
-    // {
-    //   tit: 'Ultrices non vitae elit',
-    //   level: '2'
-    // },
+    'Lorem ipsum dolor sit amet',
+    'Consectetur adipiscing elit.',
+    'Nulla vulputate neque',
   ];
-  // doneList: Array(any) = [
 
-  // ];
-
+  doing: number;
 
   constructor() { }
 
-  getTask(tit: string, level?: string) {
-    level = (!level) ? '0' : level;
-
-    this.taskList.push({
-      tit: tit,
-      level: level
-    });
+  getTask( task:string ) {
+    // level = (!level) ? '0' : level;
+    this.taskList.push(task);
   }
 }

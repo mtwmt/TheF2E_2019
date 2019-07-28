@@ -1,0 +1,29 @@
+// .main{
+//   position: relative;
+//   margin: 0 auto;
+
+
+
+//   width: 1024px;
+//   height: 100%;
+//   color: #fff;
+//   background: #243037;
+// }
+
+app-start{
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+app-main{
+  // display: none;
+  position: relative;
+  display: block;
+  // justify-content: center;
+  // align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #159;
+}

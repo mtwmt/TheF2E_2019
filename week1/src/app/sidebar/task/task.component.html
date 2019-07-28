@@ -6,6 +6,14 @@
   <ul>
     <li
       *ngFor="let item of taskList; let idx = index"
-    > <i></i>{{ item.tit }}</li>
+    > <i></i>{{ item }}</li>
+  </ul>
+</div>
+<div class="list coming">
+  <div class="list-tit">Upcoming</div>
+  <ul>
+    <li
+      *ngFor="let item of taskList; let idx = index"
+    > <i></i>{{ item }}</li>
   </ul>
 </div>

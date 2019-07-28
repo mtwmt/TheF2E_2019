@@ -1,0 +1,82 @@
+<div class="main">
+  <div class="box">
+    <div class="box-put">
+      <div class="box-left">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="box-right">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="box-cart">
+
+      <div class="card-col"
+        *ngFor="let items of putCard; let idx = index"
+      >
+        <div class="card"
+          *ngFor="let item of items; let i = index"
+          [attr.data-icon]="item.icon"
+          [attr.data-color]="item.color"
+          [attr.data-num]="item.num"
+          [attr.draggable]="false"
+          [ngStyle]="{
+            'top': i*30 +'px',
+            'background-image': 'url('+ item.imgSrc +')'
+          }"
+        ></div>
+      </div>
+
+      <!-- <div class="card"
+        *ngFor="let item of cards; let idx = index"
+        [ngStyle]="{
+          'background-image': 'url('+ item.imgSrc +')',
+          'left': item.initX +'px',
+          'top':item.initY +'px'
+        }"
+      ></div> -->
+      <!-- <div class="box-left">
+        <ul>
+          <li>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="box-right">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+  <footer>
+    <h1>FREECELL</h1>
+    <span>TIME 9:00</span>
+    <ul class="control">
+      <li>RUKS</li>
+      <li>NEW GAME</li>
+      <li>UNDO</li>
+      <li>HINT</li>
+    </ul>
+  </footer>
+</div>

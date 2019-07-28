@@ -19,6 +19,5 @@ export class TaskComponent implements OnInit {
   onKey( e: any) {
     this.appService.getTask( e.target.value );
     e.target.value = '';
-
   }
 }

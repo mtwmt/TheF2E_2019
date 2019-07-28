@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="81px" viewBox="0 0 65 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>形狀</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="play" transform="translate(-837.000000, -116.000000)">
+            <rect fill="#243037" x="0" y="0" width="1280" height="800"></rect>
+            <path d="M911.02,60 L827.98,60 C820.84,60 815,65.84 815,72.98 L815,223.5 C815,230.64 820.84,236.48 827.98,236.48 L911.03,236.48 C918.17,236.48 924.01,230.64 924.01,223.5 L924.01,72.98 C924,65.84 918.16,60 911.02,60 Z" id="路徑" stroke="#83A8BD" fill-rule="nonzero"></path>
+            <path d="M869.96,196.43 L869.04,196.43 C869.04,174.02 866.25,143.89 852.98,127.64 C845.09,117.98 837.11,117.84 837.03,117.84 L837.03,116.92 L901.95,116.92 L901.95,117.84 C870.33,117.84 869.96,195.64 869.96,196.43 Z M841.4,117.84 C844.57,118.96 849.09,121.45 853.63,126.97 C860.23,135 867.94,151.13 869.63,183.13 C870.16,175.79 871.17,166.27 873.12,156.81 C877.68,134.61 885.58,121.31 896.16,117.84 L841.4,117.84 Z" id="形狀" fill="#83A8BD" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

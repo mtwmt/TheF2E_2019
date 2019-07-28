@@ -106,10 +106,13 @@
 }
 
 .btns {
+  position: relative;
+  z-index: 10;
   margin-top: rem(800px);
   text-align: center;
   color: #003CA1;
   .btn{
+    cursor: pointer;
     display: inline-block;
     vertical-align: middle;
     margin: rem(16px);
@@ -152,7 +155,6 @@
 }
 
 .task{
-
   color: #003CA1;
   &-tit{
     font-size: rem(50px);

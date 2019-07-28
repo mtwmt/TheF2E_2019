@@ -22,10 +22,18 @@ input[type=text]{
     color: #003CA1;
     border-bottom: rem(3px) solid #2A56A5;
   }
+  &.coming{
+
+    .list-tit,ul>li{
+      color: #5980C3;
+      i{
+        background-color: #5980C3;
+      }
+    }
+  }
   ul{
     margin-top: 1rem;
     >li{
-
       font-size: rem(30px);
       color: #003CA1;
       line-height: 2;
