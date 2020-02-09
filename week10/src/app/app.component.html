@@ -1,7 +1,10 @@
 <div class="maskmap">
-  <app-search></app-search>
-
+  <a href="javascript:void(0);"
+    class="hamburger" title="MENU"
+    [ngClass]="{ 'active': isOpen }"
+    (click)="onSwitch()"
+  ><span>MENU</span></a>
+  <app-search [ngClass]="{ 'active': isOpen }"></app-search>
   <app-map></app-map>
-
 </div>
 

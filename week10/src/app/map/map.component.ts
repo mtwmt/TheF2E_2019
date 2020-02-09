@@ -1,11 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { AppService } from '../app.service';
 import { AppStoreService } from '../app-store.service';
-import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+import { environment } from 'src/environments/environment';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -14,25 +15,26 @@ import 'leaflet.markercluster';
   styleUrls: ['./map.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit, OnDestroy {
 
-  @ViewChild('maskmap', { static: true }) chartElement: ElementRef;
+  // @ViewChild('maskmap', { static: true }) chartElement: ElementRef;
 
-  map;
+  assetsUrl = environment.assetsUrl;
 
+  map: any;
   pharmacyList: Array<any>;
   curPharmacy: Array<any>;
-
   group: L.MarkerClusterGroup;
-
-  markers = [];
-
   icons: any;
+  prevPoint: any;
+  curPos = [25.0032999, 121.5540404];
+  curPos$ = new BehaviorSubject(this.curPos);
 
   constructor(
     public appService: AppService,
     public appStoreService: AppStoreService
   ) {
+    this.getPosition();
     this.appStoreService.getPharmacy$.pipe(
       map(res => {
         if (!res) { return; }
@@ -48,9 +50,27 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
+    this.map = L.map('map', {
+      center: [25.0032999, 121.5540404],
+      zoom: 15,
+      zoomControl: false,
+      layers: [L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { attribution: '&copy; 口罩地圖 by <a href="https://mtwmt.github.io/">Mandy</a>' }
+      )]
+    });
+
     this.appStoreService.getCurInfo$.subscribe(res => {
       this.onPharmacy(res);
     });
+
+    this.curPos$.subscribe(res => {
+      this.curPos = res;
+      this.map.setView(res, 15);
+    });
+
+
 
     this.icons = {
       red: this.customIcon('red'),
@@ -62,8 +82,65 @@ export class MapComponent implements OnInit, AfterViewInit {
       gold: this.customIcon('gold'),
       grey: this.customIcon('grey'),
     };
+  }
+  ngOnDestroy() {
+    this.curPos$.unsubscribe();
+  }
+  renderMap(list: Array<any>, cur: any) {
+    this.group = new L.MarkerClusterGroup().addTo(this.map);
+    list.map((e, i) => {
+      this.addMarker(e);
+    });
+    this.map.addLayer(this.group);
+  }
+  onPharmacy(info) {
+    this.map
+      .setView(info.coordinates, 16)
+      .closePopup();
 
-    console.log(3423,this.icons.red)
+    if (this.prevPoint) {
+      this.map.removeLayer(this.prevPoint);
+    }
+
+    this.prevPoint = L.marker(info.coordinates, { icon: this.icons.red })
+      .addTo(this.map)
+      .bindPopup(this.customPopup(info))
+      .openPopup();
+  }
+  addMarker(info) {
+    const marker = L.marker(info.coordinates, { icon: this.icons.grey }).bindPopup(this.customPopup(info))
+    this.group.addLayer(marker);
+  }
+  customPopup(info) {
+    // console.log('customPopup', info)
+    return `
+      <div class="customPopup">
+        <div class="customPopup__title">${ info.name}</div>
+        <div class="customPopup__block-left">
+          <div class="customPopup__addr">${ info.address}</div>
+          <div class="customPopup__note">${ info.note}</div>
+          <div class="customPopup__phone">${ info.phone}</div>
+        </div>
+        <div class="customPopup__block-right">
+          <div class="customPopup__block-flex">
+            <div class="customPopup__child">
+              <img src="${this.assetsUrl}/child.svg" />
+              <p>${ info.mask_child}</p>
+            </div>
+            <div class="customPopup__adult">
+              <img src="${this.assetsUrl}/adult.svg" />
+              <p>${ info.mask_adult}</p>
+            </div>
+          </div>
+          <a href="tel:${info.phone}" class="customPopup__tel">
+            <img src="${this.assetsUrl}/tel.svg" />
+          </a>
+        </div>
+        <a href="https://www.google.com/maps/dir/${this.curPos[0]},${this.curPos[1]}/${info.coordinates[0]},${info.coordinates[1]}" class="customPopup__google" target="_blank">
+          <img src="${this.assetsUrl}/vecotr.svg" />規劃路線
+        </a>
+      </div>
+    `;
   }
   customIcon(color: string) {
     return L.icon({
@@ -75,103 +152,14 @@ export class MapComponent implements OnInit, AfterViewInit {
       shadowSize: [41, 41]
     });
   }
-  renderMap(list: Array<any>, cur: any) {
-    console.log('asdad', list, cur);
-
-    this.map = L.map('map', {
-      center: cur,
-      zoom: 16,
-      layers: [L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }
-      )]
+  getPosition() {
+    navigator.geolocation.getCurrentPosition((data) => {
+      const latitude = data.coords.latitude;
+      const longitude = data.coords.longitude;
+      this.curPos$.next([latitude, longitude]);
     });
-
-    this.group = new L.MarkerClusterGroup().addTo(this.map);
-
-    // this.markers = [];
-    list.map((e, i) => {
-      this.addMarker(e);
-    });
-
-    this.map.addLayer(this.group);
-  }
-  customPopup( info ){
-    console.log('customPopup', info )
-    return `
-      <div class="customPopup">
-        <div class="customPopup__title">${ info.name }</div>
-        <div class="customPopup__block-left">
-          <div class="customPopup__addr">${ info.address }</div>
-          <div class="customPopup__note">${ info.note }</div>
-          <div class="customPopup__phone">${ info.phone }</div>
-        </div>
-        <div class="customPopup__block-right">
-          <div class="customPopup__block-flex">
-            <div class="customPopup__child">
-              <img src="../../assets/child.svg" />
-              <p>${ info.mask_child}</p>
-            </div>
-            <div class="customPopup__adult">
-              <img src="../../assets/adult.svg" />
-              <p>${ info.mask_adult }</p>
-            </div>
-          </div>
-          <a href="tel:${info.phone}" class="customPopup__tel">
-            <img src="../../assets/tel.svg" />
-          </a>
-        </div>
-        <a href="https://www.google.com/maps/dir/${info.coordinates[0]},${info.coordinates[1]}/" class="customPopup__google" target="_blank">
-          <img src="../../assets/vecotr.svg" />規劃路線
-        </a>
-      </div>
-    `;
-  }
-  onPharmacy(info) {
-    // console.log('pos1', info)
-    this.map
-      .setView(info.coordinates, 18)
-      .closePopup();
-
-    const curPos: any = L.marker(info.coordinates);
-
-    this.markers.map((e, i) => {
-      if (e._latlng.lat === curPos._latlng.lat && e._latlng.lng === curPos._latlng.lng) {
-        e.setIcon(this.icons.violet );
-        e.bindPopup( this.customPopup(info) ).openPopup();
-      }
-    })
-
-
-    // console.log('sda', this.markers, L.marker(pos))
-    // this.markers = L.marker(pos)
-    //   .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    //   .openPopup();  // 預設開啟
-
-  }
-
-  ngAfterViewInit() { }
-
-
-  addMarker(info) {
-    // this.markers = [];
-    const marker = L.marker(info.coordinates, { icon: this.icons.grey })
-    this.group.addLayer(marker);
-    this.markers.push(marker);
   }
 }
 
 
-
-    // L.marker([25.020995, 121.553407], { icon: this.greenIcon }).addTo(this.map)
-    //   .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')  //MARK 加html
-    //   .openPopup();  // 預設開啟
-
-    // L.marker([25.036188, 121.546113]).addTo(this.map)
-    //   .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    //   .openPopup();
-
-    // L.marker([25.022541, 121.542921]).addTo(this.map)
-    //   .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    //   .openPopup();
 // lat: 22.xxxx  lng: 120.xxxx

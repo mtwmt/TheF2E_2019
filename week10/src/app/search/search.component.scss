@@ -8,14 +8,19 @@
   }
 }
 
+
+
+
 .search{
+  position: relative;
   &__header{
-    height: rem(164px);
+    // height: rem(164px);
     background: #e0e0e0;
-  }
-  &__body{
+
     padding: rem(20px);
     &-title{
+      padding-left: rem(20px);
+      text-align: right;
       color: #4F4F4F;
       font-weight: bold;
       font-size: rem(36px);
@@ -23,7 +28,8 @@
     }
     &-city, &-area{
       position: relative;
-      margin-top: rem(40px);
+      margin-top: rem(20px);
+      // margin-top: rem(40px);
       &:before{
         position: absolute;
         top: rem(-8px);
@@ -52,5 +58,11 @@
         content: '鄉鎮市區別';
       }
     }
+
+  }
+  &__body{
+    height: calc(100% - 230px);
+    //
+
   }
 }

@@ -1,9 +1,30 @@
-<div class="search">
+<div class="search" [ngClass]="{ 'active': isOpen }">
   <div class="search__header">
-
+    <div class="search__header-title">搜尋</div>
+    <div class="search__header-city">
+      <select name="" id="city" (change)="onCityChange($event.target.value)">
+        <option>請選擇</option>
+        <option
+          *ngFor="let item of appStoreService.getCity$ | async"
+          [(value)]="item.CityName"
+          >{{ item.CityName }}</option
+        >
+      </select>
+    </div>
+    <div class="search__header-area">
+      <select name="" id="zone" (change)="onAreaChange($event.target.value)">
+        <option>請選擇</option>
+        <option
+          *ngFor="let item of appStoreService.getArea$ | async"
+          [(value)]="item.AreaName"
+          >{{ item.AreaName }}</option
+        >
+      </select>
+    </div>
   </div>
-  <div class="search__body">
-    <div class="search__body-title">搜尋</div>
+</div>
+<div class="search__body">
+  <!-- <div class="search__body-title">搜尋</div>
     <div class="search__body-city">
       <select name="" id="city" (change)="onCityChange($event.target.value)">
         <option *ngFor="let item of appStoreService.getCity$ | async" [(value)]="item.CityName">{{ item.CityName }}</option>
@@ -15,6 +36,6 @@
         <option *ngFor="let item of appStoreService.getArea$ | async" [(value)]="item.AreaName">{{ item.AreaName }}</option>
       </select>
     </div>
-  </div>
+  </div> -->
+  <app-masklist></app-masklist>
 </div>
-<app-masklist></app-masklist>

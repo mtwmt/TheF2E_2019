@@ -32,7 +32,7 @@ export class AppStoreService {
   setPharmacy(ary: Array<any>) {
     this.getAllPharmacy = ary;
   }
-  setPharmacyList(city: string, area?: string) {
+  setPharmacyList(city?: string, area?: string) {
     const newList = this.getAllPharmacy.filter(e => {
       if (e.properties.address.match('台')) {
         e.properties.address = e.properties.address.replace('台', '臺')

@@ -1,4 +1,80 @@
 
+@import "../assets/common";
+
+%clear {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+
+@mixin hamburger($color, $iconW) {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  width: $iconW;
+  height: $iconW/6;
+  background: $color;
+  margin: $iconW/3 0;
+  &:before {
+    transition:0.5s;
+    content: '';
+    position: absolute;
+    top: -$iconW/3;
+    left: 0;
+    display: block;
+    width: $iconW;
+    height: $iconW/6;
+    background: $color;
+  }
+  &:after {
+    transition:0.5s;
+    content: '';
+    position: absolute;
+    top: $iconW/3;
+    left: 0;
+    display: block;
+    width: $iconW;
+    height: $iconW/6;
+    background: $color;
+  }
+}
+
+.hamburger {
+  display: none;
+  z-index: 10000;
+  position: absolute;
+  top: rem(20px);
+  left: rem(20px);
+  width: 50px;
+  height: 45px;
+  padding: 10px;
+  background: #e0e0e0;
+  border-radius: rem(4px);
+  span {
+    display: inline-block;
+    text-indent: -9999px;
+    transition: 0.5s;
+    @include hamburger(#4F4F4F, 30px);
+  }
+  &.active {
+    span {
+      transform: rotate(180deg);
+      background-color: transparent;
+      &:before {
+        top: rem(-10px);
+        transform: translateY(10.5px) rotate(45deg);
+      }
+      &:after {
+        top: rem(-10px);
+        transform: translateY(10.5px) rotate(-45deg);
+      }
+    }
+  }
+}
+
 .maskmap{
   display: flex;
   app-search{
@@ -22,8 +98,16 @@
   }
   @media (max-width: 800px) {
     display: block;
+    .hamburger {
+      display: block;
+    }
     app-search{
       position: absolute;
+      transition: 0.5s;
+      transform: translateX(-300px);
+      &.active{
+        transform: translateX(0px);
+      }
     }
     app-map{
       position: absolute;

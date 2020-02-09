@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { AppStoreService } from './app-store.service';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
+  assetsUrl = environment.assetsUrl;
 
   url = 'https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR05WGCvc-9Ebzk6FfkBra5PKPTEh9m8EudIpKp7HRJ-woZvl9BsGMrYiRs';
 
@@ -17,7 +19,7 @@ export class AppService {
 
 
   fetchTaiwanCity(city?: string) {
-    return this.httpClient.get<any>('../assets/citycounty.json')
+    return this.httpClient.get<any>(`${this.assetsUrl}/citycounty.json`)
       .pipe(
         tap(res => {
           this.appStoreService.setCity(res);

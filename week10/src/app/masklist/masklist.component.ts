@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { AppStoreService } from '../app-store.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-masklist',
@@ -8,6 +9,8 @@ import { AppStoreService } from '../app-store.service';
   styleUrls: ['./masklist.component.scss']
 })
 export class MasklistComponent implements OnInit {
+
+  assetsUrl = environment.assetsUrl;
 
   constructor(
     public appService: AppService,

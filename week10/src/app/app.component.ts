@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'maskmap';
+  isOpen: boolean;
+
+  onSwitch() {
+
+    if (!this.isOpen) {
+      this.isOpen = true;
+    } else {
+      this.isOpen = false;
+    }
+
+  }
 }
