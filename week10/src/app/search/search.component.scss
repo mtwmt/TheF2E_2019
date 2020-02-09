@@ -1,0 +1,56 @@
+@import "../../assets/common";
+
+%clear {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+.search{
+  &__header{
+    height: rem(164px);
+    background: #e0e0e0;
+  }
+  &__body{
+    padding: rem(20px);
+    &-title{
+      color: #4F4F4F;
+      font-weight: bold;
+      font-size: rem(36px);
+      line-height: rem(54px);
+    }
+    &-city, &-area{
+      position: relative;
+      margin-top: rem(40px);
+      &:before{
+        position: absolute;
+        top: rem(-8px);
+        left: rem(20px);
+        padding: 0 rem(8px);
+        font-size: rem(12px);
+        background: #fff;
+      }
+      select{
+        padding: rem(0) rem(20px);
+        width: 100%;
+        height: rem(50px);
+        font-size: rem(16px);
+        font-family: 'Hiragino Sans CNS','微軟正黑體','Arial';
+        border-radius: rem(50px);
+        border: rem(2px) solid #4F4F4F;
+      }
+    }
+    &-city{
+      &:before{
+        content: '縣市';
+      }
+    }
+    &-area{
+      &:before{
+        content: '鄉鎮市區別';
+      }
+    }
+  }
+}

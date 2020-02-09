@@ -1,0 +1,66 @@
+@import "../../assets/common";
+
+%clear {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+:host {
+}
+.pharmacy {
+  // width: rem(350px);
+  height: calc(100% - 200px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: #fff;
+  cursor: pointer;
+  &__wrap {
+    @extend %clear;
+    margin: rem(10px) rem(10px);
+    padding: rem(16px) rem(10px);
+    box-shadow: 0px 5px 10px #f2f2f2;
+    border-radius: rem(10px);
+  }
+  &__title {
+    font-size: rem(18px);
+    font-weight: bold;
+    line-height: rem(27px);
+  }
+  &__addr {
+    font-size: rem(14px);
+    line-height: 1.5;
+    color: #828282;
+  }
+  &__phone {
+    font-size: rem(14px);
+    line-height: 1.5;
+    color: #828282;
+  }
+  &__child,
+  &__adult {
+    font-size: rem(24px);
+    font-weight: bold;
+    color: #828282;
+    img {
+      height: rem(40px);
+    }
+    p {
+      text-align: center;
+    }
+  }
+  &__block {
+    &-left {
+      float: left;
+      width: 50%;
+    }
+    &-right {
+      float: right;
+      width: 50%;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
