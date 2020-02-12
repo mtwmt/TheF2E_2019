@@ -40,12 +40,7 @@
     </select>
   </div>
   <div class="search__mask">
-    <div class="search__mask-total">
-      <h4>{{ city }}{{ area }}</h4>
-      <p>口罩總量：{{ childTotal + adultTotal }}</p>
-      <p>小孩口罩：{{ childTotal }}</p>
-      <p>成人口罩：{{ adultTotal }}</p>
-    </div>
+
     <h4>口罩類型</h4>
     <div class="search__flex">
       <div class="search__mask-child isAct" (click)="onMask('child')"
@@ -64,8 +59,11 @@
         <img src= "{{assetsUrl}}/both.svg"/>
       </div>
     </div>
-
-
+    <div class="search__mask-total">
+      <h4>{{ city }}{{ area }} <span>口罩總量：{{ childTotal + adultTotal }}</span></h4>
+      <p>小孩口罩：{{ childTotal }}</p>
+      <p>成人口罩：{{ adultTotal }}</p>
+    </div>
   </div>
 </div>
 
