@@ -17,6 +17,7 @@
   // width: 100%;
   // height: 500px;
   // padding: 30px;
+  // height: calc( 100vh - 10.625rem );
 }
 
 .map-frame {
@@ -45,19 +46,21 @@
     font-weight: bold;
     line-height: rem(27px);
   }
-  &__addr {
+  &__addr,&__note {
     font-size: rem(14px);
     line-height: 1.5;
     color: #828282;
   }
-  &__note {
-    font-size: rem(14px);
-    line-height: 1.5;
-    color: #828282;
-  }
+
   &__phone {
     margin-top: rem(8px);
     font-size: rem(14px);
+    line-height: 1.5;
+    color: #828282;
+  }
+  &__updated {
+    margin-top: rem(8px);
+    font-size: rem(12px);
     line-height: 1.5;
     color: #828282;
   }

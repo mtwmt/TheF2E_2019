@@ -1,7 +1,8 @@
 <div class="pharmacy">
   <div
     class="pharmacy__wrap"
-    *ngFor="let item of appStoreService.getPharmacy$ | async"
+    *ngFor="let item of appStoreService.getPharmacy$ | async; let idx = index"
+    [style.left.rem]="23.125 * idx"
     (click)="setInfo(item.geometry, item.properties)"
   >
     <div class="pharmacy__title">{{ item.properties.name }}</div>

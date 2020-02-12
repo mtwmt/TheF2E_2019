@@ -1,41 +1,71 @@
 <div class="search" [ngClass]="{ 'active': isOpen }">
   <div class="search__header">
-    <div class="search__header-title">搜尋</div>
-    <div class="search__header-city">
-      <select name="" id="city" (change)="onCityChange($event.target.value)">
-        <option>請選擇</option>
-        <option
-          *ngFor="let item of appStoreService.getCity$ | async"
-          [(value)]="item.CityName"
-          >{{ item.CityName }}</option
-        >
-      </select>
-    </div>
-    <div class="search__header-area">
-      <select name="" id="zone" (change)="onAreaChange($event.target.value)">
-        <option>請選擇</option>
-        <option
-          *ngFor="let item of appStoreService.getArea$ | async"
-          [(value)]="item.AreaName"
-          >{{ item.AreaName }}</option
-        >
-      </select>
+    <figure><img src= "{{assetsUrl}}/nhi.svg"/></figure>
+    <div class="search__flex">
+      <div class="search__info">
+        <figure><img src= "{{assetsUrl}}/calendar.svg"/></figure>
+        <p><span class="num">7</span>天一次</p>
+      </div>
+      <div class="search__info">
+        <figure><img src= "{{assetsUrl}}/mask.svg"/></figure>
+        <p>限購<span class="num">2</span>片</p>
+      </div>
+      <div class="search__info">
+        <figure><img src= "{{assetsUrl}}/card.svg"/></figure>
+        <p>代購<span class="num">1</span>卡</p>
+      </div>
     </div>
   </div>
 </div>
 <div class="search__body">
-  <!-- <div class="search__body-title">搜尋</div>
-    <div class="search__body-city">
-      <select name="" id="city" (change)="onCityChange($event.target.value)">
-        <option *ngFor="let item of appStoreService.getCity$ | async" [(value)]="item.CityName">{{ item.CityName }}</option>
-      </select>
+  <div class="search__body-title">搜尋</div>
+
+  <div class="search__body-city">
+    <select name="" id="city" (change)="onCityChange($event.target.value)">
+      <option
+        *ngFor="let item of appStoreService.getCity$ | async"
+        [(value)]="item.Name"
+        >{{ item.Name }}</option
+      >
+    </select>
+  </div>
+  <div class="search__body-area">
+    <select name="" id="zone" (change)="onAreaChange($event.target.value)">
+      <option>全區</option>
+      <option
+        *ngFor="let item of appStoreService.getArea$ | async"
+        [(value)]="item.Name"
+        >{{ item.Name }}</option
+      >
+    </select>
+  </div>
+  <div class="search__mask">
+    <div class="search__mask-total">
+      <h4>{{ city }}{{ area }}</h4>
+      <p>口罩總量：{{ childTotal + adultTotal }}</p>
+      <p>小孩口罩：{{ childTotal }}</p>
+      <p>成人口罩：{{ adultTotal }}</p>
     </div>
-    <div class="search__body-area">
-      <select name="" id="zone" (change)="onAreaChange($event.target.value)">
-        <option>請選擇</option>
-        <option *ngFor="let item of appStoreService.getArea$ | async" [(value)]="item.AreaName">{{ item.AreaName }}</option>
-      </select>
+    <h4>口罩類型</h4>
+    <div class="search__flex">
+      <div class="search__mask-child isAct" (click)="onMask('child')"
+        [ngClass]="{ 'isAct': mask === 'child' }"
+      >
+        <img src= "{{assetsUrl}}/child.svg"/>
+      </div>
+      <div class="search__mask-adult" (click)="onMask('adult')"
+        [ngClass]="{ 'isAct': mask === 'adult' }"
+      >
+        <img src= "{{assetsUrl}}/adult.svg"/>
+      </div>
+      <div class="search__mask-both" (click)="onMask('both')"
+        [ngClass]="{ 'isAct': mask === '' }"
+      >
+        <img src= "{{assetsUrl}}/both.svg"/>
+      </div>
     </div>
-  </div> -->
-  <app-masklist></app-masklist>
+
+
+  </div>
 </div>
+

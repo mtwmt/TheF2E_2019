@@ -20,6 +20,10 @@ export class SearchComponent implements OnInit {
   city: string;
   area: string;
 
+  mask = '';
+
+  childTotal: number;
+  adultTotal: number;
 
   constructor(
     private appService: AppService,
@@ -31,28 +35,41 @@ export class SearchComponent implements OnInit {
 
     combineLatest(
       this.appService.fetchTaiwanCity(),
-      this.appService.fetchPharmacy()
+      this.appService.fetchPharmacy(),
     ).pipe(
       map(res => {
-        return [res[0], res[1].features];
+        return [res[0], res[1]];
       })
     ).subscribe(res => {
+      // console.log(123, res)
       // console.log('alllist', res[1] )
       this.getTaiwanCity = res[0];
-      // this.onCityChange('臺北市');
-      this.appStoreService.getPharmacy$.next( res[1] );
+      this.onCityChange('台北市');
+      // this.appStoreService.getPharmacy$.next( res[1] );
+    });
+
+    this.appStoreService.getCalMask$.subscribe(res => {
+      this.childTotal = res.childTotal;
+      this.adultTotal = res.adultTotal;
     })
   }
 
-  onCityChange(event?) {
+  onCityChange(event: string) {
     this.appStoreService.setArea(event);
     this.city = event;
-
     this.appStoreService.setPharmacyList(this.city);
   }
-  onAreaChange(event) {
-    this.area = event;
+  onAreaChange(event?: string) {
+
+    if (event === '全區') {
+      this.area = '';
+    } else {
+      this.area = event;
+    }
     this.appStoreService.setPharmacyList(this.city, this.area);
   }
-
+  onMask(str: string) {
+    this.mask = str;
+    this.appStoreService.setMask(str);
+  }
 }

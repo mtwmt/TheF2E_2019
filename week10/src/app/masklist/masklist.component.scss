@@ -8,22 +8,50 @@
   }
 }
 
-:host {
-}
+// :host {
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   // width: 100%;
+//   // height: rem(300px);
+//   z-index: 9999;
+//   overflow: scroll;
+//   // width: 100%;
+// }
+
+ :host {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+    width: 100%;
+    height: rem(130px + 40px);
+  }
+
 .pharmacy {
+  position: relative;
   // width: rem(350px);
   // height: calc(100% - 230px);
+  width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background: #fff;
-  cursor: pointer;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  // background: #fff;
+
   &__wrap {
     @extend %clear;
+    position: absolute;
+    left: 0;
+    top: 0;
+    // display: inline-block;
+    width: rem(350px);
+    height: rem(130px);
     margin: rem(10px) rem(10px);
     padding: rem(16px) rem(10px);
     box-shadow: 0px 5px 10px #f2f2f2;
     border-radius: rem(10px);
+    background: #fff;
+    cursor: pointer;
   }
   &__title {
     font-size: rem(18px);

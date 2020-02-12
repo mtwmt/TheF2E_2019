@@ -9,18 +9,61 @@
 }
 
 
-
-
 .search{
   position: relative;
+  &__flex{
+    display: flex;
+    justify-content: space-around;
+  }
   &__header{
-    // height: rem(164px);
+    height: rem(164px);
     background: #e0e0e0;
+    padding: rem(20px);
+    .search__flex{
+      padding-top: rem(16px);
+    }
 
+
+    // &-title{
+    //   padding-left: rem(20px);
+    //   text-align: right;
+    //   color: #4F4F4F;
+    //   font-weight: bold;
+    //   font-size: rem(36px);
+    //   line-height: rem(54px);
+    // }
+    // &-city, &-area{
+    //   position: relative;
+    //   margin-top: rem(20px);
+    //   // margin-top: rem(40px);
+    //   &:before{
+    //     position: absolute;
+    //     top: rem(-8px);
+    //     left: rem(20px);
+    //     padding: 0 rem(8px);
+    //     font-size: rem(12px);
+    //     background: #fff;
+    //   }
+    //   select{
+    //     padding: rem(0) rem(20px);
+    //     width: 100%;
+    //     height: rem(50px);
+    //     font-size: rem(16px);
+    //     font-family: 'Hiragino Sans CNS','微軟正黑體','Arial';
+    //     border-radius: rem(50px);
+    //     border: rem(2px) solid #4F4F4F;
+    //   }
+    // }
+
+
+  }
+  &__body{
+    height: calc(100% - 230px);
+    // background: #e0e0e0;
     padding: rem(20px);
     &-title{
       padding-left: rem(20px);
-      text-align: right;
+      // text-align: right;
       color: #4F4F4F;
       font-weight: bold;
       font-size: rem(36px);
@@ -58,11 +101,64 @@
         content: '鄉鎮市區別';
       }
     }
-
   }
-  &__body{
-    height: calc(100% - 230px);
-    //
+  &__info{
+    text-align: center;
+    line-height: rem(36px);
+    font-size: rem(12px);
+    font-weight: bold;
+    color:#4F4F4F;
+    figure{
+      display: inline-block;
+      height: rem(40px);
+      img{
+        vertical-align: middle;
+      }
+    }
+    .num{
+      margin: 0 rem(2px);
+      font-size: rem(24px);
+      color: #F2994A;
+    }
+  }
+  &__mask{
+    margin-top: rem(38px);
+    h4{
+      font-size: rem(20px);
+    }
+    &-child, &-adult, &-both{
+      cursor: pointer;
+      position: relative;
+      width: rem(80px);
+      height: rem(80px);
+      margin-top: rem(24px);
+      box-shadow: 0px 5px 10px rgba(#000, 0.25);
+      border-radius: rem(20px);
+      img{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      &.isAct{
+        box-shadow: 0px rem(5px) rem(10px) #F2C94C;
 
+      }
+    }
+    &-total{
+      margin-bottom: rem(32px);
+      font-size: rem(14px);
+      h4{
+          font-size: rem(20px);
+          font-weight: bold;
+          color: #F2994A;
+          line-height: 2;
+        }
+      p{
+        line-height: 1.5;
+      }
+    }
   }
 }
